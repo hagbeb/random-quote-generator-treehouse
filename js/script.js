@@ -47,8 +47,8 @@ const quotes = [
 // create a function to get a random quote from the quotes array
 function getRandomQuote() {
   // get a random number between 0 and 5
-  const randomNumber = Math.floor(Math.random() * 6);
-  // select a quote from the quotes array using the random number, and return it
+  const randomNumber = Math.floor(Math.random() * quotes.length);
+  // select a quote object from the quotes array using the random number, and return it
   const quoteObject = quotes[randomNumber];
   return quoteObject;
 }
@@ -58,10 +58,12 @@ function getRandomColor() {
   const red = Math.floor(Math.random() * 256);
   const green = Math.floor(Math.random() * 256);
   const blue = Math.floor(Math.random() * 256);
+  // @return the random color value.
   return `
     rgb(${red}, ${green}, ${blue})
   `
 }
+
 // function to print one of the quotes in the getRandomQuote array to the screen
 function printQuote() {
   // get a random quote
@@ -70,19 +72,17 @@ function printQuote() {
   let quoteString = `
     <p class="quote">${randomQuote.quote}</p><p class="source">${randomQuote.source}
   `
-  // if the quote has a 'citation' property, then add that to the string
+  // if the quote has a 'citation', 'year', or 'tags' property, then add their values to the string
   if (randomQuote.citation) {
     quoteString += `
       <span class="citation">${randomQuote.citation}</span>
     `
   }
-  // if the quote has a 'year' property, then add that to the string
   if (randomQuote.year) {
     quoteString += `
       <span class="year">${randomQuote.year}</span>
     `
   }
-  // if the quote has a 'tags' property, then add that to the string
   if (randomQuote.tags) {
     quoteString += `
       <span class="year">${randomQuote.tags}</span>
@@ -92,7 +92,7 @@ function printQuote() {
   quoteString += `</p>`;
   // update the page with the new quote using the string we just built
   document.getElementById('quote-box').innerHTML = quoteString; 
-  // change the page to a random background colourusing the getRandomColor function
+  // change the page to a random background colour using the getRandomColor function
   document.body.style.backgroundColor = getRandomColor(); 
 }
 
